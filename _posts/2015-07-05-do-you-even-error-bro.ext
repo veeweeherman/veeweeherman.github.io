@@ -1,0 +1,24 @@
+---
+layout: post
+title: Thou shall error
+---
+
+<p>I’m pretty new to coding. Hmm, maybe on/off for 10 months so far. Even though I’m new to coding, making me a zygote-level software engineer, I already have a piece of wisdom that I wish my mentors had told me at the beginning… YOU’RE GONNA FUCK UP... AND IT’S OK.</p>
+
+<p>Here’s what I mean: Most traditional school systems teach you in a specific way with the use of 2 very powerful tools, the A and the F. The A tells you that you’re smart, studied hard, were asked a question, and arrived at the correct answer the first time. The F stands for Failure, or failure to be smart. Yes, I understand there are letters in between, even the controversial “E” (but let’s delve into that another day). For now let’s focus on the A and the F and how these two tools most likely dominated your way of thinking throughout 12-16 years schooling.</p>
+
+<p>Because I was that kid in school who always got A’s and relished in the 100 out of 100 points at the top of my test paper, I assumed I was intelligent. I also assumed this was the only way to my validate intelligence.</p>
+
+<p>It’s no wonder why coding seems hard.</p>
+
+<p>When I started learning code, I thought I wasn’t smart. My tests were failing all the time. I tried to solve a puzzle 100 different ways and it wasn’t until the 101st time, I got the right answer. Throughout my years in school, I was told that this frequency of failure is BAD.</p>
+
+<p>My overbearing perception of failure was also due to my risk-taking behaviour, or lack thereof. One of my instructors went out of his way to give me constructive criticism. He said I had a strong understanding of the concepts, but I struggle with the exercises because I’m afraid to execute my code. As in, I was afraid to make mistakes. When you think about it, of course I am! I’ve been showered with A’s my whole life for arriving at the correct answer the first time around. I had to break out of this mindset and realise coding is more forgiving. There will always be a second, or third, or 80th, or 1000th chance to fix my code.</p>
+
+<p>I still struggle with this dichotomy every day, but what helps me remember is the following comparison: mistakes in the software engineering and mistakes in the medical field. When you’re an open-heart surgeon, your mistakes could kill someone. If the surgeon forgets to wash her hands and causes an infection in a patient with immunity deficiencies, malpractice suits and possibly death. If I forget an equal sign when declaring a function, I just get a red syntax error on my laptop screen. Nobody needs a blood transfusion. Nobody needs stitches. Nobody died.</p>
+
+<p>Before I started messing around with div's or first attempted writing the Fibonacci sequence with recursion, I wish someone would’ve told me failure is a requirement (test failures, that is).</p>
+
+<p>I still take forever to finish exercises… Forever defined as n, where n is greater than or equal to 500, the number of wrong answers I tried before getting a different result. But I try to remember every day I write code that the more wrong answers I execute, the faster I’ll get to the right answer.</p>
+
+<p>Last words: I’m gonna be a fuck up, and that’s ok.</p>
