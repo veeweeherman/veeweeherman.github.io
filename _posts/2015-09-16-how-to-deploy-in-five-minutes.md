@@ -113,7 +113,7 @@ heroku create app_name
 {% endhighlight %}
 As long as the name isn't already taken on Heroku, you shouldn't have any problems.
 
-12.) Now for the magic... deploy!
+13.) Now for the magic... deploy!
 {% highlight ruby linenos %}
 git push heroku master
 {% endhighlight %}
