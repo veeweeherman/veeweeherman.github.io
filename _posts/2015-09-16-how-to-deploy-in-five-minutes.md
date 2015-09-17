@@ -11,7 +11,7 @@ I’ve deployed a number of Node/Express apps on Heroku and I wouldn’t say I�
 
 By the way, I have a [repo on GitHub](https://github.com/veeweeherman/testdeploy) with the same directions in the README file if forking the repo is easier for you :)
 
-Before we get started, make sure you have a Heroku account and have installed the [Heroku Toolbelt](https://toolbelt.Heroku.com/) and follow the directions loggin in etc.
+Before we get started, make sure you have a Heroku account and have installed the [Heroku Toolbelt](https://toolbelt.Heroku.com/) and follow the directions, login etc.
 
 1.) Go to your GitHub account and create a new repo
 
@@ -23,7 +23,7 @@ Before we get started, make sure you have a Heroku account and have installed th
 npm init
 ```
 
-4.) Fill in the blanks accordingly, but when filling out what the "entry point" will be. The default express will give you is index.js. Enter what you'd like for the js file that will hold the server. Not surpisingly, I name mine "server.js"
+4.) It'll ask you a series of questions. Fill in the blanks accordingly. Don't worry you can go into the package.json file later to edit anything. When the prompt asks for what the "entry point" will be, Express defaults to index.js. Enter what you'd like for the js file that will hold the server. Not surpisingly, I name mine "server.js"
 
 ```
 entry point: (index.js) server.js
@@ -32,7 +32,7 @@ entry point: (index.js) server.js
 5.) Install Express with the following command: 
 
 ```
-npm install —save express
+npm install --save express
 ```
 
 6.) When all that setup is done, create a server.js file (or what ever you named your server file), and paste in the boilerplate code I have provided below:
@@ -74,7 +74,13 @@ var server = app.listen(port, function() {
 {% endhighlight %}
 Notice that this server.js snippet by default will send an index.html file that is located in the root directory. Feel free to change this to what ever files on what ever path you'd like to serve up.
 
-7.) (Optional) If you'd like to create your own index.html to go along with this tutorial, here is some more boiler plate:
+7.) Now would be a good time to check your app is able to run on the localhost:
+
+```
+node server.js
+```
+
+8.) (Optional) If you'd like to create your own index.html to go along with this tutorial, here is some more boiler plate:
 {% highlight ruby linenos %}
 <!DOCTYPE html >
 <html>
@@ -85,22 +91,23 @@ Notice that this server.js snippet by default will send an index.html file that 
     <h1>DEPLOYED PAGE</h1>
       <p>G'day, mate. I'm deployed!</p>
   </body>
+</html>
 {% endhighlight %}
 
-8.) Create a new file and save it as "Procfile". This is monumentally important. It tells Heroku what server you've got and how to start it. Paste this into it:
+9.) Create a new file and save it as "Procfile". This is monumentally important. It tells Heroku what server you've got and how to start it. Paste this into it:
 {% highlight ruby linenos %}
 web: node server.js
 {% endhighlight %}
 (If you didn't name your server file "server.js", write what ever name you gave it)
 
-9.) Add a .gitignore file to avoid hell. Stick the path to your node_modules inside: (for me, it's on the root level)
+10.) Add a .gitignore file to avoid hell. Stick the path to your node_modules inside: (for me, it's on the root level)
 {% highlight ruby linenos %}
 node_modules
 {% endhighlight %}
 
-10.) Git add, commit, and push to your origin master as you normally would.
+11.) Git add, commit, and push to your origin master as you normally would.
 
-11.) While still in this directory, in the terminal have keroku create your app with the name you give it:
+12.) While still in this directory, in the terminal have Heroku create your app with the name you give it:
 {% highlight ruby linenos %}
 heroku create app_name
 {% endhighlight %}
@@ -114,6 +121,13 @@ git push heroku master
 If the moon is in line with Jupiter and Mars and perpendicular to Saturn, this should work and you'll have a deployed app on Heroku!
 
 ![Alt text](http://www.gifmambo.com/media/22589_explosion-cat-amazing-omg-reactions.gif)
+
+As long as you're getting success messages from Heroku and there weren't problems on the localhost, things should be A-OK. In the terminal type:
+
+```
+heroku open
+```
+This should open up your app in the browser at app_name.herokuapp.com 
 
 I compiled this info from hours of head-banging-against-the-wall time and from reading the docs from several sources. But here are the ones that are most helpful.
 
