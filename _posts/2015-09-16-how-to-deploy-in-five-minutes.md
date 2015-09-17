@@ -108,15 +108,17 @@ node_modules
 11.) Git add, commit, and push to your origin master as you normally would.
 
 12.) While still in this directory, in the terminal have Heroku create your app with the name you give it:
-{% highlight ruby linenos %}
+
+```
 heroku create app_name
-{% endhighlight %}
+```
 As long as the name isn't already taken on Heroku, you shouldn't have any problems.
 
 13.) Now for the magic... deploy!
-{% highlight ruby linenos %}
+
+```
 git push heroku master
-{% endhighlight %}
+```
 
 If the moon is in line with Jupiter and Mars and perpendicular to Saturn, this should work and you'll have a deployed app on Heroku!
 
