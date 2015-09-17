@@ -13,7 +13,7 @@ By the way, I have a [repo on GitHub](https://github.com/veeweeherman/testdeploy
 
 Before we get started, make sure you have a Heroku account and have installed the [Heroku Toolbelt](https://toolbelt.Heroku.com/) and follow the directions loggin in etc.
 
-1. Go to your GitHub account and create a new repo
+1.) Go to your GitHub account and create a new repo
 
 2.) Clone this repo to your local machine and then cd into it
 
@@ -35,7 +35,7 @@ entry point: (index.js) server.js
 npm install —save express
 ```
 
-6. When all that setup is done, create a server.js file (or what ever you named your server file), and paste in the boilerplate code I have provided below:
+6.) When all that setup is done, create a server.js file (or what ever you named your server file), and paste in the boilerplate code I have provided below:
 {% highlight ruby linenos %}
 // server.js
 "use strict";
@@ -74,7 +74,7 @@ var server = app.listen(port, function() {
 {% endhighlight %}
 Notice that this server.js snippet by default will send an index.html file that is located in the root directory. Feel free to change this to what ever files on what ever path you'd like to serve up.
 
-7. (Optional) If you'd like to create your own index.html to go along with this tutorial, here is some more boiler plate:
+7.) (Optional) If you'd like to create your own index.html to go along with this tutorial, here is some more boiler plate:
 {% highlight ruby linenos %}
 <!DOCTYPE html >
 <html>
@@ -87,26 +87,26 @@ Notice that this server.js snippet by default will send an index.html file that 
   </body>
 {% endhighlight %}
 
-8. Create a new file and save it as "Procfile". This is monumentally important. It tells Heroku what server you've got and how to start it. Paste this into it:
+8.) Create a new file and save it as "Procfile". This is monumentally important. It tells Heroku what server you've got and how to start it. Paste this into it:
 {% highlight ruby linenos %}
 web: node server.js
 {% endhighlight %}
 (If you didn't name your server file "server.js", write what ever name you gave it)
 
-9. Add a .gitignore file to avoid hell. Stick the path to your node_modules inside: (for me, it's on the root level)
+9.) Add a .gitignore file to avoid hell. Stick the path to your node_modules inside: (for me, it's on the root level)
 {% highlight ruby linenos %}
 node_modules
 {% endhighlight %}
 
-10. Git add, commit, and push to your origin master as you normally would.
+10.) Git add, commit, and push to your origin master as you normally would.
 
-11. While still in this directory, in the terminal have keroku create your app with the name you give it:
+11.) While still in this directory, in the terminal have keroku create your app with the name you give it:
 {% highlight ruby linenos %}
 heroku create app_name
 {% endhighlight %}
 As long as the name isn't already taken on Heroku, you shouldn't have any problems.
 
-12. Now for the magic... deploy!
+12.) Now for the magic... deploy!
 {% highlight ruby linenos %}
 git push heroku master
 {% endhighlight %}
