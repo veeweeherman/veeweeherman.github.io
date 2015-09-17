@@ -9,27 +9,27 @@ I’ve deployed a number of Node/Express apps on Heroku and I wouldn’t say I�
 
 ![Alt text](http://4.bp.blogspot.com/-jvcXGFDkMKw/U9thoH8I-wI/AAAAAAAADeU/iadUMCAHedQ/s1600/2b59a8ba44be0879ae832b60fe9284d0fa.png)
 
-By the way, I have a [repo on GutHub](https://github.com/veeweeherman/testdeploy) with the same directions in the README file if forking the repo is easier for you :)
+By the way, I have a [repo on GitHub](https://github.com/veeweeherman/testdeploy) with the same directions in the README file if forking the repo is easier for you :)
 
 Before we get started, make sure you have a Heroku account and have installed the [Heroku Toolbelt](https://toolbelt.Heroku.com/) and follow the directions loggin in etc.
 
 1. Go to your GitHub account and create a new repo
 
-2. Clone this repo to your local machine and then cd into it
+2.) Clone this repo to your local machine and then cd into it
 
-3. Then initialize the package.json file:
+3.) Then initialize the package.json file:
 
 ```
 npm init
 ```
 
-4. Fill in the blanks accordingly, but when filling out what the "entry point" will be. The default express will give you is index.js. Enter what you'd like for the js file that will hold the server. Not surpisingly, I name mine "server.js"
+4.) Fill in the blanks accordingly, but when filling out what the "entry point" will be. The default express will give you is index.js. Enter what you'd like for the js file that will hold the server. Not surpisingly, I name mine "server.js"
 
 ```
 entry point: (index.js) server.js
 ```
 
-5. Install Express with the following command: 
+5.) Install Express with the following command: 
 
 ```
 npm install —save express
@@ -121,7 +121,7 @@ I compiled this info from hours of head-banging-against-the-wall time and from r
 
 [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs#deploy-the-app)
 
-Again, if you want to fork my [repo on GutHub](https://github.com/veeweeherman/testdeploy)  feel free :)
+Again, if you want to fork my [repo on GitHub](https://github.com/veeweeherman/testdeploy)  feel free :)
 
 
  
