@@ -74,13 +74,7 @@ var server = app.listen(port, function() {
 {% endhighlight %}
 Notice that this server.js snippet by default will send an index.html file that is located in the root directory. Feel free to change this to what ever files on what ever path you'd like to serve up.
 
-7.) Now would be a good time to check your app is able to run on the localhost:
-
-```
-node server.js
-```
-
-8.) (Optional) If you'd like to create your own index.html to go along with this tutorial, here is some more boiler plate:
+7.) (Optional) If you'd like to create your own index.html to go along with this tutorial, here is some more boiler plate:
 {% highlight ruby linenos %}
 <!DOCTYPE html >
 <html>
@@ -93,6 +87,14 @@ node server.js
   </body>
 </html>
 {% endhighlight %}
+
+8.) Now would be a good time to check your app is able to run on the localhost:
+
+```
+node server.js
+```
+
+
 
 9.) Create a new file and save it as "Procfile". This is monumentally important. It tells Heroku what server you've got and how to start it. Paste this into it:
 {% highlight ruby linenos %}
