@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to Deploy an App in 5 mintutes
+title: How to Deploy an App in 5 minutes
 ---
 
 Or… at least a few minutes.
@@ -23,13 +23,13 @@ Before we get started, make sure you have a Heroku account and have installed th
 npm init
 ```
 
-4.) It'll ask you a series of questions. Fill in the blanks accordingly. Don't worry you can go into the package.json file later to edit anything. When the prompt asks for what the "entry point" will be, Express defaults to index.js. Enter what you'd like for the js file that will hold the server. Not surpisingly, I name mine "server.js"
+4.) It'll ask you a series of questions. Fill in the blanks accordingly. Don't worry you can go into the package.json file later to edit anything. When the prompt asks for what the "entry point" will be, Express defaults to index.js. Enter what you'd like for the js file that will hold the server. Not surprisingly, I name mine "server.js"
 
 ```
 entry point: (index.js) server.js
 ```
 
-5.) Install Express with the following command: 
+5.) Install Express with the following command:
 
 ```
 npm install --save express
@@ -131,7 +131,7 @@ As long as you're getting success messages from Heroku and there weren't problem
 ```
 heroku open
 ```
-This should open up your app in the browser at app_name.herokuapp.com 
+This should open up your app in the browser at app_name.herokuapp.com
 
 I compiled this info from hours of head-banging-against-the-wall time and from reading the docs from several sources. But here are the ones that are most helpful.
 
@@ -140,6 +140,3 @@ I compiled this info from hours of head-banging-against-the-wall time and from r
 [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs#deploy-the-app)
 
 Again, if you want to fork my [repo on GitHub](https://github.com/veeweeherman/testdeploy)  feel free :)
-
-
- 
