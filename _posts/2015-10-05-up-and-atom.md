@@ -20,6 +20,9 @@ var downloadAtomEditor = like buying that perfect dress;
 
 {% highlight ruby linenos %}
 var customizeWithAtomPackages = like shopping for accessories to accompany that dress to create the perfect outfit... Except all the accessories are FREE!;
+
+
+
 {% endhighlight %}
 
 Imagine buying the perfect dress but then going around for all the matching accessories and not paying a cent for any of them. That's why I'm hooked to Atom at the moment :)
@@ -36,5 +39,7 @@ One funky thing that happened with markdown-preview though (and I wish I had fou
 If I've convinced you to switch to Atom, and I hope I have, here's how to get started!
 
 Get Started with Atom!
+
 - [Download the Atom text editor](atom.io)
+
 - [Rad suggestions of Atom packages](http://elijahmanor.com/github-atom-packages/)
