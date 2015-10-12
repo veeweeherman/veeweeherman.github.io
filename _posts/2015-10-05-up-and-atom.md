@@ -12,18 +12,11 @@ I was content with Sublime Text, but I felt like it was time to find something I
 
 Here's how excited I was: I'm going to take a completely stereotypically feminine approach to this...
 
-{% highlight ruby linenos %}
 var downloadAtomEditor = like buying that perfect dress;
-{% endhighlight %}
 
 ![Alt text](https://s-media-cache-ak0.pinimg.com/originals/1f/5c/a9/1f5ca90bbb3f2e95f488bc9eb5d3470a.jpg)
 
-{% highlight ruby linenos %}
 var customizeWithAtomPackages = like shopping for accessories to accompany that dress to create the perfect outfit... Except all the accessories are FREE!;
-
-
-
-{% endhighlight %}
 
 Imagine buying the perfect dress but then going around for all the matching accessories and not paying a cent for any of them. That's why I'm hooked to Atom at the moment :)
 
