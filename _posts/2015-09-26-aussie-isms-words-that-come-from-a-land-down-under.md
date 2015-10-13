@@ -39,7 +39,7 @@ Here and there, I like to use these funny words in my everyday language:
 - <strong>too easy</strong>: I love this one. It very much displays the stereotypical laid-back nature of Australians. You're checking out at your local fish n' chip shop, and you dig further into your wallet to give exact change to the shop worker. The worker is pleased with the extra effort you made, and replies "Too easy!"
 
 
-- <strong>ballocks</strong>: If you hadn't guessed this one... it means testicles. You can use it in frustration: "I lost my phone! Ballocks!" or to describe your actual ballocks
+- <strong>bollocks</strong>: If you hadn't guessed this one... it means testicles. You can use it in frustration: "I lost my phone! Bollocks!" or to describe your actual bollocks
 
 
 - <strong>hey?</strong>: "It's beautiful weather today, hey?" Maybe this has to do with AQI, the Australian Question Intonation. There's a way that Australians speak that makes them sound like they're always ending their statements with a rising tone that resembles asking a question
