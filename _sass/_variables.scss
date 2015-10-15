@@ -1,26 +1,27 @@
-// Typography
 
-    // Fonts
-    $regular-font: 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
-    $title-font: 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
-    $subtitle-font: 'American Typewriter', Courier, serif !default;
-    $caption-font: 'Chaparral Pro', 'American Typewriter', Courier, serif !default;
+//
+// VARIABLES
+//
 
-    // Colours
-    $link-colour: #598c7d !default;
-    $link-colour-over: darken($link-colour, 15%) !default;
-    $text-colour: #222 !default;
-    $inverse-text-colour: #eee !default; // For use on dark backgrounds
-    $subtitle-colour: #aaaaaa !default;
-    $caption-colour: #777 !default;
-    $border-colour: #e5e5e5 !default;
+// Colors
+$blue: #4183C4;
 
-    // Sizes
-    $regular-text-size: 14px !default;
-    $title-text-size: 18px !default;
-    $caption-text-size: 12px !default;
+// Grays
+$black: #000;
+$darkerGray: #222;
+$darkGray: #333;
+$gray: #666;
+$lightGray: #eee;
+$white: #fff;
 
-// Layout
+// Font stacks
+$helvetica: Helvetica, Arial, sans-serif;
+$helveticaNeue: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$georgia: Georgia, serif;
 
-    // Footer
-    $footer-height: 262px !default;
+// Mobile breakpoints
+@mixin mobile {
+  @media screen and (max-width: 640px) {
+    @content;
+  }
+}
