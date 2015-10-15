@@ -9,13 +9,13 @@ Type-type-type-enter-ping!
 
 ![Tom Hanks](http://www.reactiongifs.com/r/tmhnks.gif)
 
-1. First the browser will check the IP address of the domain name that was just entered
+1) First the browser will check the IP address of the domain name that was just entered
 
   This process searches *DNS* (Domain Name Servers). It's a process that looks up the IP address of the entered domain name. First it will check the cache (browser memory) and if it's not found in the browser cache, it will check the Operating System cache (and a bunch of others, but this post is supposed to be high level overview)
 
   Generally, when two entities are connected and attempting an exchange of data, there is a *TCP* connection (Transmission Control Protocol). There are multiple TCP connections opening and closing throughout every exchange in this entire request process. Just a heads up.
 
-2. When the IP address is eventually found, it will be sent back to the browser. The browser then sends the HTTP GET request. This process, may have to travel through multiple servers to get to the one that holds the data needed
+2) When the IP address is eventually found, it will be sent back to the browser. The browser then sends the HTTP GET request. This process, may have to travel through multiple servers to get to the one that holds the data needed
 
   This GET request holds a few important pieces of information in the headers. These headers can include cookies, Accept or Accept-Encoding, the list goes on
 
