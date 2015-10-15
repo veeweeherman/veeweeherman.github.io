@@ -19,11 +19,11 @@ Type-type-type-enter-ping!
 
   This GET request holds a few important pieces of information in the headers. These headers can include cookies, Accept or Accept-Encoding, the list goes on
 
-  <strong>cookies</strong> are stored on the client and contain pertinent information about the user that will determine what kinds of data can be retrieved in this request
+  - <strong>cookies</strong> are stored on the client and contain pertinent information about the user that will determine what kinds of data can be retrieved in this request
 
-  <strong>Accept</strong> states which types of files the response will accept
+  - <strong>Accept</strong> states which types of files the response will accept
 
-  <strong>Accept-Encoding</strong> for the file that it accepts, how to process/open/render it
+  - <strong>Accept-Encoding</strong> for the file that it accepts, how to process/open/render it
 
 3. An interesting thing that can (most likely) will happen here is that the server can respond with a permanent redirect. Caching the info for https://www.somewebsite.com and https://somewebsite.com uses more memory because they're cached as separate entities. So the server will send a "Moved Permanently" 301 response so the browser knows which to go to
 
