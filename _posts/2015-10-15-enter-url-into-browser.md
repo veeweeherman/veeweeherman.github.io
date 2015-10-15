@@ -6,6 +6,7 @@ title: What happens when I type somewebsite.com into the URL bar and press enter
 This seems to be every interviewer's favorite question to ask. So I wanted to provide at least 2 blog posts to answer this question. This one (the first) will answer it with a high-level overview. I'll follow up with another post that goes more into detail.
 
 Type-type-type-enter-ping!
+
 ![Tom Hanks](http://www.reactiongifs.com/r/tmhnks.gif)
 
 1. First the browser will check the IP address of the domain name that was just entered
@@ -54,5 +55,7 @@ So there's my quick and high level overview of what happens when a user enters a
 )
 - [https://www.quora.com/What-are-the-series-of-steps-that-happen-when-an-URL-is-requested-from-the-address-field-of-a-browser](https://www.quora.com/What-are-the-series-of-steps-that-happen-when-an-URL-is-requested-from-the-address-field-of-a-browser)
 - [http://igoro.com/archive/what-really-happens-when-you-navigate-to-a-url/](http://igoro.com/archive/what-really-happens-when-you-navigate-to-a-url/)
+
+
 
 ![](http://i1.kym-cdn.com/photos/images/original/000/502/491/990.jpg)
