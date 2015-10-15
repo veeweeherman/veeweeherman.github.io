@@ -33,6 +33,6 @@ If I've convinced you to switch to Atom, and I hope I have, here's how to get st
 
 Get Started with Atom!
 
-- [Download the Atom text editor](atom.io)
+- [Download the Atom text editor](https://atom.io/)
 
 - [Rad suggestions of Atom packages](http://elijahmanor.com/github-atom-packages/)
