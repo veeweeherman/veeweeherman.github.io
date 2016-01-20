@@ -4,12 +4,8 @@ title: About
 permalink: /about/
 ---
 
-I love nerding out on algorithms and data structures because they're tough, fun and rewarding all at the same time.
 
-### More Information
-When I'm not coding, I'm cycling up steep mountains, traveling the world, rock climbing, or watching documentaries on sea life.
-
-I have an insatiable thirst for nerd-knowledge, a love for cat-puns and a set of dancing shoes ready.
+I’m a full stack software engineer with a strong background in Javascript. I’ve built apps using React, Node, PostgreSQL and deployed a number of said apps on Heroku. I enjoy teaming up with other creative and fun engineers and experimenting with the possibilities. I also get a thrill from the challenge of tackling recursive algorithms and implementing data structures. When I’m not coding, you can find me bicycling up a steep mountain, sipping coffee, or watching deep sea documentaries.
 
 ### Contact me
 
