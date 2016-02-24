@@ -4,11 +4,13 @@ title: SetTimeout, Hoisting, Block Scoping
 ---
 This seems to be an industry-wide favourite at the moment:
 
+{% highlight ruby linenos %}
 for (var i = 0; i < 4; i++){
   setTimeout(function(i){
    console.log(i);
   }, i*1000);
 }
+{% endhighlight %}
 
 where the directions say print out 0, 1, 2, 3 1000 milliseconds (or, 1 second) apart.
 
