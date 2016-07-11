@@ -3,7 +3,7 @@ layout: post
 title: Job Hunting and Hard Decisions
 ---
 
-Someone recently suggested I write a blogpost about my experience in this job search. I'd been through a lot of ups and downs in this whole process. I'll concentrate mostly on the grand/weird finale of it all.
+XYZSomeone recently suggested I write a blogpost about my experience in this job search. I'd been through a lot of ups and downs in this whole process. I'll concentrate mostly on the grand/weird finale of it all.
 
 I had applied to a multitude of job posts both in San Francisco (where I live now) and all over the US. Rejection after rejection, I was really starting to lose momentum and motivation. To be honest, I don't really have the antidote for losing your spirit. I was losing my spirit along with my mind during this phase.
 
