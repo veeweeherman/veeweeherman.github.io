@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>How to Deploy an App in 5 minutes</title>
+    <link rel="icon" type="image/ico" href="/images/favicon.ico">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600">
+    <link href="/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Vy" href="/feed.xml" />
+</head>
+
+
+<body class="preload">
+    <div class="top"></div>
+    <div class="profile" style="background-image: url(/images/jellyfish.jpg);">
+        <img src="/images/camel_mongolia_profile_pic.jpg?s=140" class="img-circle" />
+        <h3>Vy</h3>
+        <p>Software Engineer in San Francisco</p>
+        <ul class="social">
+            
+            <a type="button" href="http://github.com/veeweeherman">
+                <i class="fa fa-github"></i>
+            </a>
+             
+            <a type="button" href="http://twitter.com/veeweeherman">
+                <i class="fa fa-twitter"></i>
+            </a>
+             
+            <a type="button" href="http://linkedin.com/in/vyhcu">
+                <i class="fa fa-linkedin"></i>
+            </a>
+              
+        </ul>
+    </div>
+    <div class="posts">
+        <header class="head">
+  <h1 class="head-title">
+    <a href="/">Vy</a>
+  </h1>
+</header>
+
+
+<div class="content post">
+  <h1 class="post-title">How to Deploy an App in 5 minutes</h1>
+  <div class="post-date">
+    <time>16 Sep 2015</time>
+  </div>
+  <p>Or… at least a few minutes.</p>
+
+<p>I’ve deployed a number of Node/Express apps on Heroku and I wouldn’t say I’m a “deployment master”… okay, sarcasm and oversized ego aside, here’s the way I deploy my apps on Heroku.</p>
+
+<p><img src="http://4.bp.blogspot.com/-jvcXGFDkMKw/U9thoH8I-wI/AAAAAAAADeU/iadUMCAHedQ/s1600/2b59a8ba44be0879ae832b60fe9284d0fa.png" alt="Alt text" /></p>
+
+<p>By the way, I have a <a href="https://github.com/veeweeherman/testdeploy">repo on GitHub</a> with the same directions in the README file if forking the repo is easier for you :)</p>
+
+<p>Before we get started, make sure you have a Heroku account and have installed the <a href="https://toolbelt.Heroku.com/">Heroku Toolbelt</a> and follow the directions, login etc.</p>
+
+<p>1.) Go to your GitHub account and create a new repo</p>
+
+<p>2.) Clone this repo to your local machine and then cd into it</p>
+
+<p>3.) Then initialize the package.json file:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>npm init
+</code></pre>
+</div>
+
+<p>4.) It’ll ask you a series of questions. Fill in the blanks accordingly. Don’t worry you can go into the package.json file later to edit anything. When the prompt asks for what the “entry point” will be, Express defaults to index.js. Enter what you’d like for the js file that will hold the server. Not surprisingly, I name mine “server.js”</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>entry point: (index.js) server.js
+</code></pre>
+</div>
+
+<p>5.) Install Express with the following command:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>npm install --save express
+</code></pre>
+</div>
+
+<p>6.) When all that setup is done, create a server.js file (or what ever you named your server file), and paste in the boilerplate code I have provided below:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre></td><td class="code"><pre><span class="sr">//</span> <span class="n">server</span><span class="p">.</span><span class="nf">js</span>
+<span class="s2">"use strict"</span><span class="p">;</span>
+
+<span class="n">var</span> <span class="n">express</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
+
+<span class="n">var</span> <span class="n">app</span> <span class="o">=</span> <span class="n">express</span><span class="p">();</span>
+<span class="n">var</span> <span class="n">path</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">);</span>
+
+
+<span class="n">var</span> <span class="n">port</span> <span class="o">=</span> <span class="n">process</span><span class="p">.</span><span class="nf">env</span><span class="o">.</span><span class="no">PORT</span> <span class="o">||</span> <span class="s1">'3000'</span><span class="p">;</span>
+
+<span class="sr">//</span><span class="o">========================================================</span><span class="sr">//</span>
+<span class="sr">//</span>   <span class="n">connecting</span> <span class="n">the</span> <span class="n">client</span> <span class="n">and</span> <span class="n">server</span>                     <span class="sr">//</span>
+<span class="sr">//</span>   <span class="n">allows</span> <span class="k">for</span> <span class="no">CORS</span> <span class="p">(</span><span class="n">cross</span> <span class="n">origin</span> <span class="n">resource</span> <span class="n">sharing</span><span class="p">)</span>      <span class="o">/</span><span class="sr">/
+/</span><span class="o">/========================================================</span><span class="sr">//</span>
+<span class="n">app</span><span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="k">next</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">res</span><span class="p">.</span><span class="nf">header</span><span class="p">(</span><span class="s2">"Access-Control-Allow-Origin"</span><span class="p">,</span> <span class="s2">"*"</span><span class="p">);</span>
+  <span class="n">res</span><span class="p">.</span><span class="nf">header</span><span class="p">(</span><span class="s2">"Access-Control-Allow-Headers"</span><span class="p">,</span> <span class="s2">"Origin, X-Requested-With, Content-Type, Accept"</span><span class="p">);</span>
+  <span class="k">next</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="n">app</span><span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="n">express</span><span class="p">.</span><span class="nf">static</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="nf">normalize</span><span class="p">(</span><span class="n">__dirname</span> <span class="o">+</span> <span class="s1">'/'</span><span class="p">)));</span>
+
+<span class="n">app</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">res</span><span class="p">.</span><span class="nf">sendFile</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">__dirname</span> <span class="o">+</span> <span class="s1">'/index.html'</span><span class="p">));</span>
+<span class="p">});</span>
+
+<span class="sr">//</span><span class="o">========================================================</span><span class="sr">//</span>
+<span class="sr">//</span>   <span class="no">Calling</span> <span class="n">the</span> <span class="n">server</span>                                   <span class="sr">//</span>
+<span class="sr">//</span><span class="o">========================================================</span><span class="sr">//</span>
+<span class="n">var</span> <span class="n">server</span> <span class="o">=</span> <span class="n">app</span><span class="p">.</span><span class="nf">listen</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">var</span> <span class="n">host</span> <span class="o">=</span> <span class="n">server</span><span class="p">.</span><span class="nf">address</span><span class="p">().</span><span class="nf">address</span><span class="p">;</span>
+  <span class="n">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s1">'MyDeploymentApp is listening at http://%s:%s -- %s'</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">);</span>
+<span class="p">});</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Notice that this server.js snippet by default will send an index.html file that is located in the root directory. Feel free to change this to what ever files on what ever path you’d like to serve up.</p>
+
+<p>7.) (Optional) If you’d like to create your own index.html to go along with this tutorial, here is some more boiler plate:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10</pre></td><td class="code"><pre><span class="o">&lt;!</span><span class="no">DOCTYPE</span> <span class="n">html</span> <span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">html</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;</span><span class="no">My</span> <span class="no">Deployed</span> <span class="no">App</span><span class="o">&lt;</span><span class="sr">/title&gt;
+  &lt;/</span><span class="n">head</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">DEPLOYED</span> <span class="no">PAGE</span><span class="o">&lt;</span><span class="sr">/h1&gt;
+      &lt;p&gt;G'day, mate. I'm deployed!&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="sr">/body&gt;
+&lt;/</span><span class="n">html</span><span class="o">&gt;</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>8.) Now would be a good time to check your app is able to run on the localhost:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>node server.js
+</code></pre>
+</div>
+
+<p>9.) Create a new file and save it as “Procfile”. This is monumentally important. It tells Heroku what server you’ve got and how to start it. Paste this into it:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="ss">web: </span><span class="n">node</span> <span class="n">server</span><span class="p">.</span><span class="nf">js</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>(If you didn’t name your server file “server.js”, write what ever name you gave it)</p>
+
+<p>10.) Add a .gitignore file to avoid hell. Stick the path to your node_modules inside: (for me, it’s on the root level)</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="n">node_modules</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>11.) Git add, commit, and push to your origin master as you normally would.</p>
+
+<p>12.) While still in this directory, in the terminal have Heroku create your app with the name you give it:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>heroku create app_name
+</code></pre>
+</div>
+<p>As long as the name isn’t already taken on Heroku, you shouldn’t have any problems.</p>
+
+<p>13.) Now for the magic… deploy!</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>git push heroku master
+</code></pre>
+</div>
+
+<p>If the moon is in line with Jupiter and Mars and perpendicular to Saturn, this should work and you’ll have a deployed app on Heroku!</p>
+
+<p><img src="http://www.gifmambo.com/media/22589_explosion-cat-amazing-omg-reactions.gif" alt="Alt text" /></p>
+
+<p>As long as you’re getting success messages from Heroku and there weren’t problems on the localhost, things should be A-OK. In the terminal type:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>heroku open
+</code></pre>
+</div>
+<p>This should open up your app in the browser at app_name.herokuapp.com</p>
+
+<p>I compiled this info from hours of head-banging-against-the-wall time and from reading the docs from several sources. But here are the ones that are most helpful.</p>
+
+<p><a href="http://expressjs.com/starter/installing.html">Express Install</a></p>
+
+<p><a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs#deploy-the-app">Getting Started with Node.js on Heroku</a></p>
+
+<p>Again, if you want to fork my <a href="https://github.com/veeweeherman/testdeploy">repo on GitHub</a>  feel free :)</p>
+
+</div>
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+var disqus_shortname = 'veeweehermangithubio';
+var disqus_identifier = '/2015/09/16/how-to-deploy-in-five-minutes/';
+
+(function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+</body>
+<script type="text/javascript">
+    window.onload = function(){
+        document.getElementsByTagName("BODY")[0].classList.remove("preload");
+    }
+</script>
+</html>

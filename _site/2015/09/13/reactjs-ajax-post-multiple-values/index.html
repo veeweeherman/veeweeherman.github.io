@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AJAX POST with multiple values and ReactJS</title>
+    <link rel="icon" type="image/ico" href="/images/favicon.ico">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600">
+    <link href="/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Vy" href="/feed.xml" />
+</head>
+
+
+<body class="preload">
+    <div class="top"></div>
+    <div class="profile" style="background-image: url(/images/jellyfish.jpg);">
+        <img src="/images/camel_mongolia_profile_pic.jpg?s=140" class="img-circle" />
+        <h3>Vy</h3>
+        <p>Software Engineer in San Francisco</p>
+        <ul class="social">
+            
+            <a type="button" href="http://github.com/veeweeherman">
+                <i class="fa fa-github"></i>
+            </a>
+             
+            <a type="button" href="http://twitter.com/veeweeherman">
+                <i class="fa fa-twitter"></i>
+            </a>
+             
+            <a type="button" href="http://linkedin.com/in/vyhcu">
+                <i class="fa fa-linkedin"></i>
+            </a>
+              
+        </ul>
+    </div>
+    <div class="posts">
+        <header class="head">
+  <h1 class="head-title">
+    <a href="/">Vy</a>
+  </h1>
+</header>
+
+
+<div class="content post">
+  <h1 class="post-title">AJAX POST with multiple values and ReactJS</h1>
+  <div class="post-date">
+    <time>13 Sep 2015</time>
+  </div>
+  <p>My team and I are building an app in ReactJS, along with a Postgres Database, and even though there are moments when I want to bang my head against a wall, I’m loving React. Here is the most recent problem that made a dent in the wall: Sending multiple values in an AJAX POST request (specifically, values from a text-input and a drop-down menu).</p>
+
+<p>Our app in a nutshell: Habitude, where users can keep track of their progress in learning a new habit.</p>
+
+<p>The React component that we’re working on requires multiple nested components. One of the child components is the form that will take the user’s input from the text-field and drop-down menu and send it off to the database. What’s a good way to do this? May I introduce to you, the ref attribute.</p>
+
+<p>What ever elements that will take the user’s input values, in this case: the text-field and the drop-down, stick unique ref attributes on them. In my example, lines 4 and 6.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17</pre></td><td class="code"><pre>  <span class="ss">render: </span><span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">form</span> <span class="n">className</span><span class="o">=</span><span class="s2">"habitForm"</span> <span class="n">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">handleSubmit</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">input</span> <span class="n">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="n">placeholder</span><span class="o">=</span><span class="s2">"Enter text"</span> <span class="n">ref</span><span class="o">=</span><span class="s2">"habit"</span> <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nb">select</span> <span class="nb">name</span><span class="o">=</span><span class="s2">"Categories"</span> <span class="nb">id</span><span class="o">=</span><span class="s1">'something'</span> <span class="n">ref</span><span class="o">=</span><span class="s2">"category"</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">"null"</span><span class="o">&gt;</span><span class="no">Please</span> <span class="nb">select</span> <span class="n">a</span> <span class="n">category</span> <span class="k">for</span> <span class="n">your</span> <span class="kp">new</span> <span class="no">Habitude</span><span class="o">&lt;</span><span class="sr">/option&gt;
+          &lt;option value="Health"&gt;Health&lt;/o</span><span class="n">ption</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">"Fitness"</span><span class="o">&gt;</span><span class="no">Fitness</span><span class="o">&lt;</span><span class="sr">/option&gt;
+          &lt;option value="Addiction"&gt;Addiction&lt;/o</span><span class="n">ption</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">option</span> <span class="n">value</span><span class="o">=</span><span class="s2">"Overall Cool Catness"</span><span class="o">&gt;</span><span class="no">Overall</span> <span class="no">Cool</span> <span class="no">Catness</span><span class="o">&lt;</span><span class="sr">/option&gt;
+        &lt;/se</span><span class="n">lect</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="sr">/div&gt;
+      &lt;input type="submit" value="Post" /</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="sr">/form&gt;
+      );
+  }</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Notice that this form is a component and its onSubmit event will fire the this.handleSubmit function that is also in this form component. React has an awesome (and convenient!) method React.findDOMNode that will find the DOM node with the ref attribute value you give it. Grab its value and trim its whitespace and there you have your strings of habit and category.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10</pre></td><td class="code"><pre><span class="ss">handleSubmit: </span><span class="n">function</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">e</span><span class="p">.</span><span class="nf">preventDefault</span><span class="p">();</span>
+  <span class="n">var</span> <span class="n">habit</span> <span class="o">=</span> <span class="no">React</span><span class="p">.</span><span class="nf">findDOMNode</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="nf">refs</span><span class="p">.</span><span class="nf">habit</span><span class="p">).</span><span class="nf">value</span><span class="p">.</span><span class="nf">trim</span><span class="p">();</span>
+  <span class="n">var</span> <span class="n">category</span> <span class="o">=</span> <span class="no">React</span><span class="p">.</span><span class="nf">findDOMNode</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="nf">refs</span><span class="p">.</span><span class="nf">category</span><span class="p">).</span><span class="nf">value</span><span class="p">.</span><span class="nf">trim</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">habit</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">this</span><span class="p">.</span><span class="nf">props</span><span class="p">.</span><span class="nf">onHabitSubmit</span><span class="p">({</span><span class="ss">habit: </span><span class="n">habit</span><span class="p">,</span> <span class="ss">category: </span><span class="n">category</span><span class="p">});</span> 
+  <span class="no">React</span><span class="p">.</span><span class="nf">findDOMNode</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="nf">refs</span><span class="p">.</span><span class="nf">habit</span><span class="p">).</span><span class="nf">value</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+<span class="p">},</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>What now? One line, 10 you can see there’s another event listener of “onHabitSubmit”. This props method will send a JSON object to my AJAX POST request. This JSON object will have the 2 key-value pairs that I need to send to the database. A value for “habit” and a value for “category”. If you want more info about the this.props property in ReactJS,<br />
+<a href="https://facebook.github.io/react/docs/transferring-props.html/">check out the docs.</a></p>
+
+<p>In the parent component that will render everything, the “onHabitSubmit” prop is an event listener we’ve created. When the “onHabitSubmit” event happens, it will fire the “handleHabitSubmit” AJAX call.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9</pre></td><td class="code"><pre>  <span class="ss">render: </span><span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">"habitBox"</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">Habit</span> <span class="no">Tracker</span><span class="o">&lt;</span><span class="sr">/h1&gt;
+        &lt;HabitList data={this.state.data} /</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="no">HabitForm</span> <span class="n">onHabitSubmit</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">handleHabitSubmit</span><span class="p">}</span> <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="sr">/div&gt;
+    );
+  }</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>This AJAX call takes in the JSON object that is ever-so-nicely put together by the props.onHabitSubmit:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></td><td class="code"><pre><span class="ss">handleHabitSubmit: </span><span class="n">function</span><span class="p">(</span><span class="n">habitCategory</span><span class="p">)</span> <span class="p">{</span> 
+
+  <span class="n">var</span> <span class="n">habits</span> <span class="o">=</span> <span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">data</span><span class="p">;</span>
+  <span class="n">var</span> <span class="n">newHabits</span> <span class="o">=</span> <span class="n">habits</span><span class="p">.</span><span class="nf">concat</span><span class="p">([</span><span class="n">habitCategory</span><span class="p">]);</span> 
+  <span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span><span class="ss">data: </span><span class="n">newHabits</span><span class="p">});</span> 
+
+  <span class="vg">$.</span><span class="n">ajax</span><span class="p">({</span>
+    <span class="ss">url: </span><span class="s1">'/api/habits'</span><span class="p">,</span>
+    <span class="ss">dataType: </span><span class="s1">'json'</span><span class="p">,</span>
+    <span class="ss">type: </span><span class="s1">'POST'</span><span class="p">,</span>
+    <span class="ss">data: </span><span class="n">habitCategory</span><span class="p">,</span>
+    <span class="ss">success: </span><span class="n">function</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span><span class="ss">data: </span><span class="n">data</span><span class="p">});</span> 
+    <span class="p">}.</span><span class="nf">bind</span><span class="p">(</span><span class="n">this</span><span class="p">),</span>
+    <span class="ss">error: </span><span class="n">function</span><span class="p">(</span><span class="n">xhr</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="nf">props</span><span class="p">.</span><span class="nf">url</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">err</span><span class="p">.</span><span class="nf">toString</span><span class="p">());</span>
+    <span class="p">}.</span><span class="nf">bind</span><span class="p">(</span><span class="n">this</span><span class="p">)</span>
+  <span class="p">});</span>
+<span class="p">},</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>On line 11, stick that beautifully wrapped JSON object as the value of the data property in the AJAX POST.</p>
+
+<p>On lines 3-5, pay no attention to the man behind the curtain. There’s logic for other parts of our app. Basically, we have to organise the data for other calls in this component that make a GET request for all the habits (including the new one the user just entered) to render to the page in real time, i.e. without refreshing the page. We take the existing habits in the current state of the data object. Then concatenate the new JSON object to the tail end of it, and set the state to this entire array of objects, that hold all the previous habits plus our new one.</p>
+
+<p><img src="http://stream1.gifsoup.com/view6/2618300/the-man-behind-the-curtain-o.gif" alt="Alt text" /></p>
+
+<p>All this work to send off mutiple key-value pairs to the database. Now if you’ll excuse me, I need a shower after that excruciating workout.</p>
+
+<p><img src="http://memeguy.com/photos/images/mrw-i-look-in-the-mirror-before-a-shower-after-a-workout-48728.gif" alt="Alt text" /></p>
+
+</div>
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+var disqus_shortname = 'veeweehermangithubio';
+var disqus_identifier = '/2015/09/13/reactjs-ajax-post-multiple-values/';
+
+(function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+</body>
+<script type="text/javascript">
+    window.onload = function(){
+        document.getElementsByTagName("BODY")[0].classList.remove("preload");
+    }
+</script>
+</html>

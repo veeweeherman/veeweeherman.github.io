@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Binary representation of integers</title>
+    <link rel="icon" type="image/ico" href="/images/favicon.ico">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600">
+    <link href="/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Vy" href="/feed.xml" />
+</head>
+
+
+<body class="preload">
+    <div class="top"></div>
+    <div class="profile" style="background-image: url(/images/jellyfish.jpg);">
+        <img src="/images/camel_mongolia_profile_pic.jpg?s=140" class="img-circle" />
+        <h3>Vy</h3>
+        <p>Software Engineer in San Francisco</p>
+        <ul class="social">
+            
+            <a type="button" href="http://github.com/veeweeherman">
+                <i class="fa fa-github"></i>
+            </a>
+             
+            <a type="button" href="http://twitter.com/veeweeherman">
+                <i class="fa fa-twitter"></i>
+            </a>
+             
+            <a type="button" href="http://linkedin.com/in/vyhcu">
+                <i class="fa fa-linkedin"></i>
+            </a>
+              
+        </ul>
+    </div>
+    <div class="posts">
+        <header class="head">
+  <h1 class="head-title">
+    <a href="/">Vy</a>
+  </h1>
+</header>
+
+
+<div class="content post">
+  <h1 class="post-title">Binary representation of integers</h1>
+  <div class="post-date">
+    <time>11 Feb 2016</time>
+  </div>
+  <p>Recently I hacked away at this algorithm: entering an integer and outputting the binary representation of the integer.</p>
+
+<p>For the sake of this example, let’s only work with positive integers.</p>
+
+<p>Next, how do we break this down? Well, one thing I noticed about binary representation is the far right digit. Whether or not the integer we are trying to represent is even or odd will determine whether or not that far right digit is 0 or 1.</p>
+
+<p>Each 0 or 1 in the binary representation represents a power of 2. I think of it as 1-yes or 0-no to adding that power of 2 to equate the integer we’re trying to represent.</p>
+
+<p>From right to left, each 0 or 1 represents 2 to the nth power, where n starts from 0. Starting from the most far right digit, is 2 to the 0 power. 2^0 (2 to the power of 0) is equal to 1. (Any positive integer to the power of 0 will always equal 1)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>2^0 = 1
+2^1 = 2
+2^2 = 4
+2^3 = 8
+2^4 = 16
+2^5 = 32
+</code></pre>
+</div>
+
+<p>Do you see the pattern?</p>
+
+<p>So the binary representation of 5 is 101:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>2^2 + 0 + 2^0 = 4 + 0 + 1 = 5
+</code></pre>
+</div>
+
+<p>The binary representation of 4 is 100:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>2^2 + 0 + 0 = 4 + 0 + 0 = 4
+</code></pre>
+</div>
+
+<p>The binary representation of 11 is 1011:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>2^3 + 0 + 2^1 + 2^0 = 8 + 0 + 2 + 1 = 11
+</code></pre>
+</div>
+
+<p>Let’s look at basic arithmetic. Every even integer is divisible by 2. Every odd integer can be made even if you subtract 1 from it. The far right digit in binary representation is the only odd number, the 2^0 = 1. So this is the digit that will tell you if the integer being represented is even or odd. The far right digit will be 1 if it is odd, and it will be 0 if it is even. Look at my examples above. So let’s use this in the code:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17</pre></td><td class="code"><pre><span class="n">var</span> <span class="n">binary</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">n</span><span class="p">){</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">1</span> <span class="o">!==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">'Please enter a positive integer!'</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">var</span> <span class="n">output</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="sr">//</span> <span class="n">insert</span> <span class="n">a</span> <span class="s1">'0'</span> <span class="k">in</span> <span class="n">the</span> <span class="n">far</span> <span class="n">right</span> <span class="n">place</span> <span class="n">of</span> <span class="n">the</span> <span class="n">binary</span> <span class="n">representation</span>
+      <span class="n">output</span> <span class="o">=</span> <span class="s1">'0'</span><span class="p">.</span><span class="nf">concat</span><span class="p">(</span><span class="n">output</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="sr">//</span> <span class="n">insert</span> <span class="n">a</span> <span class="s1">'1'</span> <span class="k">in</span> <span class="n">the</span> <span class="n">far</span> <span class="n">right</span> <span class="n">place</span> <span class="n">of</span> <span class="n">the</span> <span class="n">binary</span> <span class="n">representation</span>
+      <span class="n">output</span> <span class="o">=</span> <span class="s1">'1'</span><span class="p">.</span><span class="nf">concat</span><span class="p">(</span><span class="n">output</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="sr">//</span> <span class="n">somehow</span> <span class="n">work</span> <span class="n">with</span> <span class="n">the</span> <span class="n">other</span> <span class="n">digits</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">output</span><span class="p">;</span>
+<span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>I used the .concat() method because it keeps the order of strings I am gluing together in the correct order, right to left. At first I was making the mistake of adding the digit to the output:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>output += '1';
+output += '0';
+</code></pre>
+</div>
+
+<p>but that appends the digit to the right of the string, so the representation would come out backwards. 11 would be represented as ‘1101’ instead of ‘1011’.</p>
+
+<p>How do we get the rest of the digits though? A peculiar thing about binary is that for the digits that represent 2^1, 2^2, 2^3 and so forth, you can divide the number in half and floor the decimal (forcing it to round down regardless of the decimal value), and check if the halved and rounded down number is even or odd, deciphering if another 0 or 1 is needed. Let’s explore with 11:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Power of 2  | number  | number/2  | Math.floor(number/2)  | even/odd? | Binary Representation
+2^0         | 11      | n/a       | n/a                   | odd       | '1'
+2^1         | 11      | 5.5       | 5                     | odd       | '11'
+2^2         | 5       | 2.5       | 2                     | even      | '011'
+2^3         | 2       | 1         | 1                     | odd       | '1011'
+2^4         | 1       | 0.5       | 0                     | neither   | we're done!
+</code></pre>
+</div>
+
+<p>So let’s code:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15</pre></td><td class="code"><pre><span class="n">var</span> <span class="n">binary</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">n</span><span class="p">){</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">1</span> <span class="o">!==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">'Please enter a positive integer!'</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">var</span> <span class="n">output</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">output</span> <span class="o">=</span> <span class="s1">'0'</span><span class="p">.</span><span class="nf">concat</span><span class="p">(</span><span class="n">output</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">output</span> <span class="o">=</span> <span class="s1">'1'</span><span class="p">.</span><span class="nf">concat</span><span class="p">(</span><span class="n">output</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="no">Math</span><span class="p">.</span><span class="nf">floor</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">output</span><span class="p">;</span>
+<span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+
+</div>
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+var disqus_shortname = 'veeweehermangithubio';
+var disqus_identifier = '/2016/02/11/binary/';
+
+(function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+</body>
+<script type="text/javascript">
+    window.onload = function(){
+        document.getElementsByTagName("BODY")[0].classList.remove("preload");
+    }
+</script>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>What happens when I type somewebsite.com into the URL bar and press enter?</title>
+    <link rel="icon" type="image/ico" href="/images/favicon.ico">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600">
+    <link href="/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Vy" href="/feed.xml" />
+</head>
+
+
+<body class="preload">
+    <div class="top"></div>
+    <div class="profile" style="background-image: url(/images/jellyfish.jpg);">
+        <img src="/images/camel_mongolia_profile_pic.jpg?s=140" class="img-circle" />
+        <h3>Vy</h3>
+        <p>Software Engineer in San Francisco</p>
+        <ul class="social">
+            
+            <a type="button" href="http://github.com/veeweeherman">
+                <i class="fa fa-github"></i>
+            </a>
+             
+            <a type="button" href="http://twitter.com/veeweeherman">
+                <i class="fa fa-twitter"></i>
+            </a>
+             
+            <a type="button" href="http://linkedin.com/in/vyhcu">
+                <i class="fa fa-linkedin"></i>
+            </a>
+              
+        </ul>
+    </div>
+    <div class="posts">
+        <header class="head">
+  <h1 class="head-title">
+    <a href="/">Vy</a>
+  </h1>
+</header>
+
+
+<div class="content post">
+  <h1 class="post-title">What happens when I type somewebsite.com into the URL bar and press enter?</h1>
+  <div class="post-date">
+    <time>15 Oct 2015</time>
+  </div>
+  <p>This seems to be every interviewer’s favorite question to ask. So I wanted to provide at least 2 blog posts to answer this question. This one (the first) will answer it with a high-level overview. I’ll follow up with another post that goes more into detail.</p>
+
+<p>Type-type-type-enter-ping!</p>
+
+<p><img src="http://www.reactiongifs.com/r/tmhnks.gif" alt="Tom Hanks" /></p>
+
+<p>1) First the browser will check the IP address of the domain name that was just entered</p>
+
+<ul>
+  <li>
+    <p>This process searches <em>DNS</em> (Domain Name Servers). It’s a process that looks up the IP address of the entered domain name. First it will check the cache (browser memory) and if it’s not found in the browser cache, it will check the Operating System cache (and a bunch of others, but this post is supposed to be high level overview)</p>
+  </li>
+  <li>
+    <p>Generally, when two entities are connected and attempting an exchange of data, there is a <em>TCP</em> connection (Transmission Control Protocol). There are multiple TCP connections opening and closing throughout every exchange in this entire request process. Just a heads up.</p>
+  </li>
+</ul>
+
+<p>2) When the IP address is eventually found, it will be sent back to the browser. The browser then sends the HTTP GET request. This process, may have to travel through multiple servers to get to the one that holds the data needed</p>
+
+<ul>
+  <li>
+    <p>This GET request holds a few important pieces of information in the headers. These headers can include cookies, Accept or Accept-Encoding, the list goes on</p>
+  </li>
+  <li>
+    <p><strong>cookies</strong> are stored on the client and contain pertinent information about the user that will determine what kinds of data can be retrieved in this request</p>
+  </li>
+  <li>
+    <p><strong>Accept</strong> states which types of files the response will accept</p>
+  </li>
+  <li>
+    <p><strong>Accept-Encoding</strong> for the file that it accepts, how to process/open/render it</p>
+  </li>
+</ul>
+
+<p>3) An interesting thing that can (most likely) will happen here is that the server can respond with a permanent redirect. Caching the info for https://www.somewebsite.com and https://somewebsite.com uses more memory because they’re cached as separate entities. So the server will send a “Moved Permanently” 301 response so the browser knows which to go to</p>
+
+<p>4) So the browser will follow this redirect, and another GET request is sent. Eventually, the correct server will have the info needed, and the server will process the request and send a response.</p>
+
+<ul>
+  <li>
+    <p>Ok that sounds simple enough, but of course it’s not. When I say the server will process the request, it’ll read the headers and make a response in accordance to the constraints of the headers. For example, if the Content-Type is “text/html” it knows the response to send back to the client will be an html file. Based on the limitations of your access token, maybe your session will expire in x-seconds. Or in the case of trying to log on to a social media site where you have “friends” or “followers”, based on your userid it knows who are your friends/followers and it knows to send info on those particular friends in the response as well</p>
+  </li>
+  <li>
+    <p>All of this is handled by a number of request handlers. Specific request handlers handle specific requests. For example with an app like Facebook, one req handler to get your profile picture. One for your friends’ status updates for your NewsFeed. One for your timeline posts. You get the idea.</p>
+  </li>
+</ul>
+
+<p>5) The browser receives the response and renders the response as it comes in, not after the response has completed its arrival</p>
+
+<ul>
+  <li>Think of it like a factory assembly line. Worker receives package of widget. Opens package. Decides how to assemble widget (With glue? With nails? By hand?). Assembles Widget how ever they’re supposed to. Sends it down the line.</li>
+</ul>
+
+<p>6) After the initial response is processed and starts rendering to the client, most likely, it requires more embedded objects in the initial HTML response. More GET requests are sent out for objects like images, CSS files, or JS files. These GET requests go through a similar process as above.</p>
+
+<ul>
+  <li>Static files are cached into the browser, so in this retrieval process some items can be retrieved from the cache. Depending expiration constraints in the headers.</li>
+</ul>
+
+<p>7) Lastly, ever notice your browser in your Activity Monitor is always running and doing something even when you’re not? It’s because most sites, like Facebook, are always sending Asynchronous AJAX requests for more information. If you’re on your NewsFeed page on Facebook, it automatically updates with new posts from your friends and organizations from around the globe every x-seconds. It’s because when logged into your account, the browser will send for requests to always GET new data to keep you up to date.</p>
+
+<p>So there’s my quick and high level overview of what happens when a user enters a URL into the browser. I somehow organized it into 7 steps but obviously it’s more like 450,000 steps. But hopefully the person asking you this is going to ask you other interesting questions that better evaluate your candidacy. I think a question like this is important, but I also believe knowing other information can just as easily prove you’re a capable programmer. But this is a classic.</p>
+
+<p><strong>Resources:</strong></p>
+
+<ul>
+  <li><a href="http://stackoverflow.com/questions/2092527/what-happens-when-you-type-in-a-url-in-browser">http://stackoverflow.com/questions/2092527/what-happens-when-you-type-in-a-url-in-browser
+</a></li>
+  <li><a href="https://www.quora.com/What-are-the-series-of-steps-that-happen-when-an-URL-is-requested-from-the-address-field-of-a-browser">https://www.quora.com/What-are-the-series-of-steps-that-happen-when-an-URL-is-requested-from-the-address-field-of-a-browser</a></li>
+  <li><a href="http://igoro.com/archive/what-really-happens-when-you-navigate-to-a-url/">http://igoro.com/archive/what-really-happens-when-you-navigate-to-a-url/</a></li>
+</ul>
+
+<p><img src="http://i1.kym-cdn.com/photos/images/original/000/502/491/990.jpg" alt="" /></p>
+
+</div>
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+var disqus_shortname = 'veeweehermangithubio';
+var disqus_identifier = '/2015/10/15/enter-url-into-browser/';
+
+(function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+</body>
+<script type="text/javascript">
+    window.onload = function(){
+        document.getElementsByTagName("BODY")[0].classList.remove("preload");
+    }
+</script>
+</html>

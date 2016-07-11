@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Redemption via the Dirty Dancing Duo of For Loops</title>
+    <link rel="icon" type="image/ico" href="/images/favicon.ico">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600">
+    <link href="/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Vy" href="/feed.xml" />
+</head>
+
+
+<body class="preload">
+    <div class="top"></div>
+    <div class="profile" style="background-image: url(/images/jellyfish.jpg);">
+        <img src="/images/camel_mongolia_profile_pic.jpg?s=140" class="img-circle" />
+        <h3>Vy</h3>
+        <p>Software Engineer in San Francisco</p>
+        <ul class="social">
+            
+            <a type="button" href="http://github.com/veeweeherman">
+                <i class="fa fa-github"></i>
+            </a>
+             
+            <a type="button" href="http://twitter.com/veeweeherman">
+                <i class="fa fa-twitter"></i>
+            </a>
+             
+            <a type="button" href="http://linkedin.com/in/vyhcu">
+                <i class="fa fa-linkedin"></i>
+            </a>
+              
+        </ul>
+    </div>
+    <div class="posts">
+        <header class="head">
+  <h1 class="head-title">
+    <a href="/">Vy</a>
+  </h1>
+</header>
+
+
+<div class="content post">
+  <h1 class="post-title">Redemption via the Dirty Dancing Duo of For Loops</h1>
+  <div class="post-date">
+    <time>13 Jul 2015</time>
+  </div>
+  <p>
+Approximately 4 1/2 weeks ago I was presented with a algorithm that nearly broke me. I was doing my technical interview at a highly sought after coding bootcamp here in San Francisco. I was pummelled when I received the following algorithm: write a function that takes a string as an argument and returns an array of all the repeated characters. 
+</p>
+
+<p>
+This may seem simple to many of you reading this, but you need to understand I’ve only been learning code for a few months. Although I’ve always loved math and other logically-minded curriculum, I have always been shit at puzzles and these “easy” level coding problems. 
+</p>
+
+<p>
+I started sweating sorrow-shaped bullets when my interviewer asked me this. All I could think of were memories of opening coderbyte.com and <timidly>attempting&lt;/woefully&gt; these puzzles from hell. It took me hours to half-solve one. In the interview, I could barely write anything down. Not even pseudo code. All I could think was that my answer was gonna be the wrong one or the most expensive in time complexity (like the highly looked-down-upon triple for-loop). Needless to say I left the interview feeling quite defeated. 
+&lt;/p&gt;
+
+<p>
+Fast-forward a bit: I’m now currently enrolled in that academy’s partner school across The Bay (and loving it). But today we had an assessment, and one of the things we were tested on was (you guessed it) algorithms! Oh, and THAT SAME ONE I totally bombed. My first thought was “Well I know I’m going to fail that one again.” I probably shouldn’t have come at it so negatively.
+</p>
+
+
+<p>
+Ok, now to the fun part: I totally solved it! I’m not even sure if I solved it in the most efficient way, but hey at least it works. Again, this may not be the most optimal (in one way or another) and more experienced coders might have another approach. 
+</p>
+
+<p>I’ve had a few engineer friends of mine remind me about data structures and the unique ways they store data. A key thing that has helped me (on several occasions) throughout coding in Javascript has been remembering that an object’s keys are always strings and they’re always unique.</p>
+
+<p>When searching for duplicates in a string, I assigned each character as a key in an empty object and kept a count by making its value equal to a number. 1 makes sense, but since indexes start at 0, I’m more inclined to make the count start at 0. Also, as each key is assigned, I checked to see if it already exists on the object. If that character already exists on the object, its value is incremented by one. So by the time the string is finally looped through, every character has been accounted for.</p>
+
+<p>Next, I created an empty array to push duplicates into and return. Then in a for-in loop (yes I know, that Dirty-Double-for-loop, cue the Dirty Dancing theme song), search for any values that are greater than or equal to 1 and push its corresponding key into the array. Then be polite, and return what you borrowed… the array, that is. </p>
+
+![_config.yml](/images/find_dups.png)
+
+
+</timidly></p>
+
+</div>
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+var disqus_shortname = 'veeweehermangithubio';
+var disqus_identifier = '/2015/07/13/redemption-via-dirty-dancing/';
+
+(function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+</body>
+<script type="text/javascript">
+    window.onload = function(){
+        document.getElementsByTagName("BODY")[0].classList.remove("preload");
+    }
+</script>
+</html>

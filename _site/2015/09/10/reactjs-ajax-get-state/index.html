@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Using ReactJS and state to render cool stuffs</title>
+    <link rel="icon" type="image/ico" href="/images/favicon.ico">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600">
+    <link href="/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Vy" href="/feed.xml" />
+</head>
+
+
+<body class="preload">
+    <div class="top"></div>
+    <div class="profile" style="background-image: url(/images/jellyfish.jpg);">
+        <img src="/images/camel_mongolia_profile_pic.jpg?s=140" class="img-circle" />
+        <h3>Vy</h3>
+        <p>Software Engineer in San Francisco</p>
+        <ul class="social">
+            
+            <a type="button" href="http://github.com/veeweeherman">
+                <i class="fa fa-github"></i>
+            </a>
+             
+            <a type="button" href="http://twitter.com/veeweeherman">
+                <i class="fa fa-twitter"></i>
+            </a>
+             
+            <a type="button" href="http://linkedin.com/in/vyhcu">
+                <i class="fa fa-linkedin"></i>
+            </a>
+              
+        </ul>
+    </div>
+    <div class="posts">
+        <header class="head">
+  <h1 class="head-title">
+    <a href="/">Vy</a>
+  </h1>
+</header>
+
+
+<div class="content post">
+  <h1 class="post-title">Using ReactJS and state to render cool stuffs</h1>
+  <div class="post-date">
+    <time>10 Sep 2015</time>
+  </div>
+  <p>For several hours my goofy front end partner and I were chasing down the results of our database query. Our app has a ReactJS component that will render a user’s name and location after it has been retrieved from the database.</p>
+
+<p>Here’s the set up for our simple database AJAX GET request in ReactJS:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4</pre></td><td class="code"><pre><span class="n">var</span> <span class="no">ProfilePictureNameLocation</span> <span class="o">=</span> <span class="no">React</span><span class="p">.</span><span class="nf">createClass</span><span class="p">({</span>
+	  <span class="ss">getInitialState: </span><span class="n">function</span><span class="p">(){</span> 
+    <span class="k">return</span> <span class="p">{</span><span class="ss">username: </span><span class="s1">''</span><span class="p">,</span><span class="ss">location: </span><span class="s1">''</span><span class="p">}</span>
+  <span class="p">},</span> <span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Setting the stage initially on line 3 sets the state of the data as an empty string that will be assigned values once the database query has successfully returned with an object that has our desired data (the user’s actual name and location).</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></td><td class="code"><pre>  <span class="ss">componentDidMount: </span><span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="vg">$.</span><span class="n">ajax</span><span class="p">({</span>
+        <span class="ss">type: </span><span class="s1">'GET'</span><span class="p">,</span>
+        <span class="ss">url: </span><span class="s1">'/api/nameAndLoc'</span><span class="p">,</span> 
+        <span class="ss">dataType: </span><span class="s1">'json'</span><span class="p">,</span>
+        <span class="ss">success: </span><span class="n">function</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="p">{</span> 
+          <span class="n">this</span><span class="p">.</span><span class="nf">setState</span><span class="p">({</span>
+            <span class="ss">username: </span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nf">username</span><span class="p">,</span> 
+            <span class="ss">location: </span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nf">location</span>
+          <span class="p">})</span>
+          <span class="n">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s1">'successfully retrieved username and location from the database!'</span><span class="p">)</span>
+        <span class="p">}.</span><span class="nf">bind</span><span class="p">(</span><span class="n">this</span><span class="p">),</span>
+        <span class="ss">error: </span><span class="n">function</span><span class="p">(</span><span class="n">xhr</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="nf">props</span><span class="p">.</span><span class="nf">url</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">err</span><span class="p">.</span><span class="nf">toString</span><span class="p">());</span>
+          <span class="n">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s1">'failed to retrieve username and location from db :( '</span><span class="p">);</span>
+        <span class="p">}.</span><span class="nf">bind</span><span class="p">(</span><span class="n">this</span><span class="p">)</span>
+    <span class="p">})</span>
+  <span class="p">},</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>The componentDidMount function in ReactJS handles our request. It has your usual components of an AJAX call, as you can see above. But on a successful call, the state of the data needs to be updated. Because this particular database query returns an array, on lines 7-10 we need to locate exactly what we need and assign it to the correct values in the state object.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10</pre></td><td class="code"><pre>	<span class="ss">render: </span><span class="n">function</span><span class="p">(){</span>
+		<span class="k">return</span> <span class="p">(</span>
+			<span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="p">{</span><span class="s1">'some-image-URL'</span><span class="p">}</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="no">Hello</span><span class="p">,</span> <span class="p">{</span><span class="n">this</span><span class="p">.</span><span class="nf">state</span><span class="p">.</span><span class="nf">username</span><span class="p">}</span><span class="o">!&lt;</span><span class="sr">/p&gt;
+        &lt;p&gt;Location: {this.state.location}&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="sr">/div&gt;
+    ) 
+	}
+	})</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Finally, the render function puts our hard work into the wild. This is the funny thing about ReactJS. In order to have your Javascript rendered into your html, we must write html-ese in our Javascript! The render function must return your data wrapped in html elements. Make sure there’s an overall parent element that wraps the entire returning data, the divs on lines 3 and 6. If we console.log the state in the render function, we’ll see the username and location have been updated form the successful ajax call, and thats what we want to render!</p>
+
+<p>This seems simple enough right? Well, it’s not. If we console.log messages throughout these three methods in our ReactJS component, you’ll see that render is called twice with componentDidMount once in between those 2 invocations. This caused my partner and I problems that lasted several hours. We couldn’t understand why we couldn’t access the returning data from the successful AJAX call. Firstly, we set the initial state incorrectly. We set the state object to {data: ‘’} If state is set like this, we’re not really reminding ourselves that username and location need to be assigned.</p>
+
+<p>Also, because the render function is invoked first, the state is still empty. It isn’t until the second time render is invoked that it will hold the data we need from the database. Without updating the state of the object, we’re trying to render info onto the page from an empty object :( No one likes to open up empty presents on their birthday… always set the state properly!</p>
+
+<p><img src="https://i0.wp.com/cdn.theglow.com.au/app/uploads/2014/08/emptybox.gif" alt="Alt text" /></p>
+
+
+</div>
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+var disqus_shortname = 'veeweehermangithubio';
+var disqus_identifier = '/2015/09/10/reactjs-ajax-get-state/';
+
+(function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+</body>
+<script type="text/javascript">
+    window.onload = function(){
+        document.getElementsByTagName("BODY")[0].classList.remove("preload");
+    }
+</script>
+</html>

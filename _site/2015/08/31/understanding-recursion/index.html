@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Understanding Recursion is Inception is Recursion is Inception...</title>
+    <link rel="icon" type="image/ico" href="/images/favicon.ico">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600">
+    <link href="/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Vy" href="/feed.xml" />
+</head>
+
+
+<body class="preload">
+    <div class="top"></div>
+    <div class="profile" style="background-image: url(/images/jellyfish.jpg);">
+        <img src="/images/camel_mongolia_profile_pic.jpg?s=140" class="img-circle" />
+        <h3>Vy</h3>
+        <p>Software Engineer in San Francisco</p>
+        <ul class="social">
+            
+            <a type="button" href="http://github.com/veeweeherman">
+                <i class="fa fa-github"></i>
+            </a>
+             
+            <a type="button" href="http://twitter.com/veeweeherman">
+                <i class="fa fa-twitter"></i>
+            </a>
+             
+            <a type="button" href="http://linkedin.com/in/vyhcu">
+                <i class="fa fa-linkedin"></i>
+            </a>
+              
+        </ul>
+    </div>
+    <div class="posts">
+        <header class="head">
+  <h1 class="head-title">
+    <a href="/">Vy</a>
+  </h1>
+</header>
+
+
+<div class="content post">
+  <h1 class="post-title">Understanding Recursion is Inception is Recursion is Inception...</h1>
+  <div class="post-date">
+    <time>31 Aug 2015</time>
+  </div>
+  <p>Recursion is a deceptively hard thing to understand. But as I progress in my tenure at Telegraph Academy, the coding bootcamp I’m currently in, I’m learning more and more that recursion is everywhere. I’m also learning I want to creepily whisper “inception…” every time I approach an algorithm that requires recursion.</p>
+
+<p><img src="http://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2014/03/1394332737Go-Deeper-Inception-Movie.jpg" alt="Alt text" /></p>
+
+<p>In programming, recursion is when a function calls itself. Recursion can be useful when the size of the list to iterate through is unknown. An array’s size can easily be found using the .length() method. But there are data structures where the number of properties in a list is unknown because of where they could be stored in the data structure.</p>
+
+<p>A tree is a data structure that starts with a single node and that first node may have child nodes. Think of nodes as a piece of data in the tree. It usually holds a value and a reference to its child nodes, the nodes that belong to the parent node. And just like with people, each child may have its own set of children, and so on and so on. You get the picture. And if not, here’s a real one:</p>
+
+<p><img src="http://people.cis.ksu.edu/~schmidt/300s05/Lectures/GrammarNotes/species.jpg" alt="Alt text" /></p>
+
+<p>Let’s say the constructor function for each node on this tree is the following.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4</pre></td><td class="code"><pre>  <span class="n">var</span> <span class="no">Tree</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">value</span><span class="p">){</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+    <span class="n">this</span><span class="p">.</span><span class="nf">children</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="p">};</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>I’ve written the code with a psedoclassical instantiation pattern in Javascript. If you’re baffled by what that is, check out this dude’s nifty blog post about <a href="http://www.ryanatkinson.io/javascript-instantiation-patterns/">instantiation patterns.</a></p>
+
+<p>Now imagine the code in the illustrated tree was this:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13</pre></td><td class="code"><pre>  <span class="n">var</span> <span class="n">animal</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="ss">value: </span><span class="s1">'Animal'</span><span class="p">,</span>
+    <span class="n">children</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Reptile'</span><span class="p">,</span><span class="s1">'Mammal'</span><span class="p">]</span>
+  <span class="p">}</span>
+  <span class="n">var</span> <span class="n">reptile</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="ss">value: </span><span class="s1">'Reptile'</span><span class="p">,</span>
+    <span class="n">children</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Lizard'</span><span class="p">,</span><span class="s1">'Snake'</span><span class="p">,</span> <span class="s1">'Bird'</span><span class="p">]</span>
+  <span class="p">}</span>
+  <span class="n">var</span> <span class="n">mammal</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="ss">value: </span><span class="s1">'Mammal'</span><span class="p">,</span>
+    <span class="n">children</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Equine'</span><span class="p">,</span><span class="s1">'Bovine'</span><span class="p">,</span> <span class="s1">'Canine'</span><span class="p">]</span>
+  <span class="p">}</span>
+  <span class="sr">//</span> <span class="n">etc</span><span class="p">.</span><span class="nf">.</span><span class="p">.</span> <span class="nf">etc</span><span class="p">.</span><span class="nf">.</span><span class="o">.</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Do you see how every child node on the tree is referenced nn an array on its parent? That means any node that is a child can be stored on all different places all over the tree!</p>
+
+<p>Using recursion, I wrote an algorithm to find all the leaves. A leaf is a node that does not have any child nodes. Visually speaking, those kids live at the furthest edges of a branch of the tree. If every parent node holds the list of its children, then how do we iterate on all these different separate lists of child nodes when we don’t know how many or how long these lists are?</p>
+
+<p>We write out a base case. A base case is the condition that will stop the recursive function from calling itself forever. Think of it like the limit in a for-loop. In order to count the leaves in a tree, and not infinitely invoke itself, my function needs to stop counting at some point. But how do we know when? When the child node we are currently iterating on has no more children. Then we know we are at a child-less node. Let’s set that up:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9</pre></td><td class="code"><pre>  <span class="no">Tree</span><span class="p">.</span><span class="nf">prototype</span><span class="p">.</span><span class="nf">countLeaves</span> <span class="o">=</span> <span class="n">function</span> <span class="p">()</span> <span class="p">{</span> 
+    <span class="n">var</span> <span class="n">leaves</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="sr">//</span> <span class="n">counter</span> <span class="k">for</span> <span class="n">leaves</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">this</span><span class="p">.</span><span class="nf">chidren</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="nf">children</span><span class="p">.</span><span class="nf">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">){</span> <span class="sr">//</span> <span class="n">check</span> <span class="k">if</span> <span class="n">current</span> <span class="n">node</span> <span class="n">has</span> <span class="n">no</span> <span class="n">children</span>
+      <span class="n">leaves</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span> <span class="sr">//</span> <span class="k">if</span> <span class="n">current</span> <span class="n">node</span> <span class="n">is</span> <span class="n">childless</span><span class="p">,</span> <span class="n">incrememnt</span> <span class="n">the</span> <span class="n">leaf</span> <span class="n">count</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">leaves</span><span class="p">;</span>
+  <span class="p">};</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>First, I created a variable to keep track of the number of leaves found, initialised at 0. Then to check the length of the current node’s children array. If the length is zero, then it is a childless node and up goes the leaf count.</p>
+
+<p>Now what to do when is does have children and we must search further? We invoke this counting function again on the current node.  Something like this:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre>  <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">this</span><span class="p">.</span><span class="nf">children</span><span class="p">.</span><span class="nf">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">countLeaves</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="nf">children</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+  <span class="p">};</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>This recursive invocation will check this child’s children array to see if it has any children. (Are you seeing how Leonardo DiCaprio is starting to sneak into the picture now?)</p>
+
+<p>Hmm, this seems to make sorta sense but how does it work all together? Let’s refactor. Introducing: The subroutine.</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14</pre></td><td class="code"><pre>  <span class="no">Tree</span><span class="p">.</span><span class="nf">prototype</span><span class="p">.</span><span class="nf">countLeaves</span> <span class="o">=</span> <span class="n">function</span> <span class="p">()</span> <span class="p">{</span> 
+    <span class="n">var</span> <span class="n">node</span> <span class="o">=</span> <span class="n">this</span><span class="p">;</span>
+    <span class="n">var</span> <span class="n">leaves</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="sr">//</span> <span class="n">counter</span> <span class="k">for</span> <span class="n">leaves</span>
+    <span class="n">var</span> <span class="n">inner</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="p">{</span> <span class="sr">//</span> <span class="n">need</span> <span class="n">subroutine</span> <span class="n">to</span> <span class="n">not</span> <span class="n">lose</span> <span class="n">count</span> <span class="n">of</span> <span class="n">leaves</span> 
+      <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="nf">children</span><span class="p">.</span><span class="nf">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">){</span> <span class="sr">//</span> <span class="n">check</span> <span class="k">if</span> <span class="n">current</span> <span class="n">node</span> <span class="n">has</span> <span class="n">no</span> <span class="n">children</span>
+        <span class="n">leaves</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span> <span class="sr">//</span> <span class="k">if</span> <span class="n">current</span> <span class="n">node</span> <span class="n">is</span> <span class="n">childless</span><span class="p">,</span> <span class="n">incrememnt</span> <span class="n">the</span> <span class="n">leaf</span> <span class="n">count</span>
+      <span class="p">}</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">node</span><span class="p">.</span><span class="nf">children</span><span class="p">.</span><span class="nf">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">inner</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="nf">children</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+      <span class="p">};</span>
+    <span class="p">};</span>
+    <span class="n">inner</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">leaves</span><span class="p">;</span>
+  <span class="p">};</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Subroutines are inner functions that get called recursively as we iterate through lists. There aren’t always clear cut cases of when or when not to use subroutines (or if there is I just haven’t written about it yet!) but I like to use subroutines when there is some variable that needs to be in a separate scope of an iteration. Here with the “inner” subroutine, I’m able to keep the leaf count from resetting with every iteration of our for-loop.</p>
+
+<p>And of course, what would a subroutine be without an invocation? Most of the time, the subroutine will need to be invoked inside the original function, with its first argument on line 12. The reason I know this will work is because the first argument passed in is connected to everything that will be iterated on later. Each node is connected to its children and grandchildren through references in the children arrays.</p>
+
+<p>If you’re wondering why I set the node to equal “this” on line 2, it’s because in pseudoclassical instatiation, the keyword “this” usually refers to the object that called the method in the first place. But because I want to recursively call the countLeaves method on any of this’s children, I’ll just refer to it as “node” and iterate over “node”’s children. If you want more info on that, leave a comment and I’ll try and fanaggle a post about the horrors of “this”.</p>
+
+<p>And there we have it. Oh, Leo!</p>
+
+<p><img src="http://33.media.tumblr.com/tumblr_lmbnsuXCdB1qa4ihzo1_500.gif" alt="Alt text" /></p>
+
+</div>
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+var disqus_shortname = 'veeweehermangithubio';
+var disqus_identifier = '/2015/08/31/understanding-recursion/';
+
+(function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+</body>
+<script type="text/javascript">
+    window.onload = function(){
+        document.getElementsByTagName("BODY")[0].classList.remove("preload");
+    }
+</script>
+</html>

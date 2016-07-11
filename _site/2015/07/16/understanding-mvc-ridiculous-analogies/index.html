@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Understanding MVC Architecture with Ridiculous Analogies</title>
+    <link rel="icon" type="image/ico" href="/images/favicon.ico">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600">
+    <link href="/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Vy" href="/feed.xml" />
+</head>
+
+
+<body class="preload">
+    <div class="top"></div>
+    <div class="profile" style="background-image: url(/images/jellyfish.jpg);">
+        <img src="/images/camel_mongolia_profile_pic.jpg?s=140" class="img-circle" />
+        <h3>Vy</h3>
+        <p>Software Engineer in San Francisco</p>
+        <ul class="social">
+            
+            <a type="button" href="http://github.com/veeweeherman">
+                <i class="fa fa-github"></i>
+            </a>
+             
+            <a type="button" href="http://twitter.com/veeweeherman">
+                <i class="fa fa-twitter"></i>
+            </a>
+             
+            <a type="button" href="http://linkedin.com/in/vyhcu">
+                <i class="fa fa-linkedin"></i>
+            </a>
+              
+        </ul>
+    </div>
+    <div class="posts">
+        <header class="head">
+  <h1 class="head-title">
+    <a href="/">Vy</a>
+  </h1>
+</header>
+
+
+<div class="content post">
+  <h1 class="post-title">Understanding MVC Architecture with Ridiculous Analogies</h1>
+  <div class="post-date">
+    <time>16 Jul 2015</time>
+  </div>
+  <p>One of my instructors informed me I have a _.uniq way of explaining my understanding of JavaScript concepts. So I’m going to start writing about them and hope they’re useful to any readers out there.</p>
+
+<p>MVC stands for: Models, Controllers, and Views</p>
+
+<p>I’ll explain 2 anaolgies that have helped me better understand the structure of MVC: one silly/general/overarching explanation and the other technical/detail-oriented/not as funny.</p>
+
+<p>Imagine walking into a room with mutltiple closets. In the closets held different articles of clothing you might be looking for. One closet for shirts. One closet for trousers. One closet for underwear (quite possibly the most important closet). And the only way to know where anything is located is through the receptionist.</p>
+
+<p>The clothes are the Models.
+The receptionist is the Controller .
+The clothes you walk out with is the View.</p>
+
+<p>When you walk into the room, you tell the receptionist (Controller) you want green underwear (Model). The receptionist knows exactly which closet to go to for your green underwear. Once you walk out the door wearing that green underwear and people start whistling at your sexiness, that’s the View.</p>
+
+<p>Ok, on to the normal explanation of MVC.</p>
+
+<p>Currently, there’s a post with 0 likes. User clicks on the “like” button, which will increment the like-count to 1.</p>
+
+<p>The Controller listens for the click and invokes a function on the data (the Model).</p>
+
+<p>The Model changes the data it’s holding, so it’s holding info of “like-count goes from 0 to 1”. The Model also emits a message to the world that a change has happened. Think of the Model as having a mouth, so it screams “Change! Change!”, but it does not scream out “Change from 0 to 1”, only that there’s been a change.</p>
+
+<p>Here’s why. The View listens for the “Change! Change!” announcement in the air and knows it needs to update the DOM (what the User sees). How does it know what to change? The View has data access to the Model it’s affiliated with, so with the View’s arm, it reaches for the specific data it needs to change the DOM with.</p>
+
+<p><img src="/images/mvcwhite.JPG" alt="_config.yml" /></p>
+
+<p>Again, my anaolgies are weird and sort of funny in a cheesy way, but if they help at least MVC-noob out there, then I’ve done my job :)</p>
+
+<p><img src="/images/successborat.jpg" alt="_config.yml" /></p>
+
+</div>
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+var disqus_shortname = 'veeweehermangithubio';
+var disqus_identifier = '/2015/07/16/understanding-mvc-ridiculous-analogies/';
+
+(function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+</body>
+<script type="text/javascript">
+    window.onload = function(){
+        document.getElementsByTagName("BODY")[0].classList.remove("preload");
+    }
+</script>
+</html>

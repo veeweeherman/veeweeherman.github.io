@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Personalize your Favicons</title>
+    <link rel="icon" type="image/ico" href="/images/favicon.ico">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600">
+    <link href="/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Vy" href="/feed.xml" />
+</head>
+
+
+<body class="preload">
+    <div class="top"></div>
+    <div class="profile" style="background-image: url(/images/jellyfish.jpg);">
+        <img src="/images/camel_mongolia_profile_pic.jpg?s=140" class="img-circle" />
+        <h3>Vy</h3>
+        <p>Software Engineer in San Francisco</p>
+        <ul class="social">
+            
+            <a type="button" href="http://github.com/veeweeherman">
+                <i class="fa fa-github"></i>
+            </a>
+             
+            <a type="button" href="http://twitter.com/veeweeherman">
+                <i class="fa fa-twitter"></i>
+            </a>
+             
+            <a type="button" href="http://linkedin.com/in/vyhcu">
+                <i class="fa fa-linkedin"></i>
+            </a>
+              
+        </ul>
+    </div>
+    <div class="posts">
+        <header class="head">
+  <h1 class="head-title">
+    <a href="/">Vy</a>
+  </h1>
+</header>
+
+
+<div class="content post">
+  <h1 class="post-title">Personalize your Favicons</h1>
+  <div class="post-date">
+    <time>07 Sep 2015</time>
+  </div>
+  <p>If you use Google Chrome to browse your favourite sites, you might notice a teeny tiny pic in the corner of the browser tab. For the longest time, I had no idea what the heck that was. After googling phrases such as “the little icon in browser tab”, I discovered that little 16x16 icon is a favicon.</p>
+
+<p>As I published posts in this blog, I one day noticed the favicon was an icon that I did not choose! The adorable avatar I have for myself in this blog (a 100% likeness of myself by the way, at least the size of my head and ego anyway) is what I wanted for my favicon.</p>
+
+<p>If you also want to personalise your favicon, here’s how.</p>
+
+<ol>
+  <li>
+    <p>Choose the photo you want as your favicon and use a nifty favicon generator such as <a href="http://www.favicon-generator.org/">Dan’s Tools.</a> 
+This website is very simple. Upload a photo you’d like to be made into an icon. Download the file it outputs. Unless you specified favicon only, Dan’s Tools actually gives you multiple versions of your icon, in different sizes for different file formats. The file named “favicon.ico” is (obviously) made specifically for the favicon.</p>
+  </li>
+  <li>
+    <p>You’ll need this code in your html file:</p>
+  </li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10</pre></td><td class="code"><pre><span class="o">&lt;!</span><span class="no">DOCTYPE</span> <span class="n">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">html</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;</span><span class="no">FAVICOONNNN</span><span class="o">&lt;</span><span class="sr">/title&gt;
+		&lt;link rel="icon" type="image/i</span><span class="n">co</span><span class="s2">" href="</span> <span class="o">*</span><span class="n">write</span> <span class="n">the</span> <span class="n">path</span> <span class="n">to</span> <span class="n">where</span> <span class="n">you</span> <span class="n">saved</span> <span class="n">your</span> <span class="n">favicon</span><span class="p">.</span><span class="nf">ico</span><span class="o">*</span> <span class="s2">"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h1&gt;FAVICOONNNN, Like ComicCon But Totally Not&lt;/h1&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>3 Make it rain: Clear the cache!
+<img src="https://s-media-cache-ak0.pinimg.com/originals/20/c6/fd/20c6fda81a1a6bb98630987728677326.gif" alt="Alt text" /></p>
+
+<p>If you’ve done the previous 2 steps, and you’re not seeing results clearing the cache history before and after may show the updated favicon. Just trust me. I lost 2 hours of my life not realizing all I had to do was clear the cache to see my mini-me-avatar in the tab of my own blog.</p>
+
+
+</div>
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+var disqus_shortname = 'veeweehermangithubio';
+var disqus_identifier = '/2015/09/07/personalize-your-favicons/';
+
+(function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+</body>
+<script type="text/javascript">
+    window.onload = function(){
+        document.getElementsByTagName("BODY")[0].classList.remove("preload");
+    }
+</script>
+</html>

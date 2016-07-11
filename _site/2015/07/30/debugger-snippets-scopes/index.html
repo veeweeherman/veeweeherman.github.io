@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Debugger and Snippets and Scopes, Oh My!</title>
+    <link rel="icon" type="image/ico" href="/images/favicon.ico">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600">
+    <link href="/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Vy" href="/feed.xml" />
+</head>
+
+
+<body class="preload">
+    <div class="top"></div>
+    <div class="profile" style="background-image: url(/images/jellyfish.jpg);">
+        <img src="/images/camel_mongolia_profile_pic.jpg?s=140" class="img-circle" />
+        <h3>Vy</h3>
+        <p>Software Engineer in San Francisco</p>
+        <ul class="social">
+            
+            <a type="button" href="http://github.com/veeweeherman">
+                <i class="fa fa-github"></i>
+            </a>
+             
+            <a type="button" href="http://twitter.com/veeweeherman">
+                <i class="fa fa-twitter"></i>
+            </a>
+             
+            <a type="button" href="http://linkedin.com/in/vyhcu">
+                <i class="fa fa-linkedin"></i>
+            </a>
+              
+        </ul>
+    </div>
+    <div class="posts">
+        <header class="head">
+  <h1 class="head-title">
+    <a href="/">Vy</a>
+  </h1>
+</header>
+
+
+<div class="content post">
+  <h1 class="post-title">Debugger and Snippets and Scopes, Oh My!</h1>
+  <div class="post-date">
+    <time>30 Jul 2015</time>
+  </div>
+  <p>Like many other budding engineers, I was once scared of Google Chrome’s Debugger (dun dun dun…). There are a number of useful things you can do in the Debugger, one of which is using Snippets and Breakpoints. Snippets are places in the Sources tab where you can paste bits of code to debug. Breakpoints stop time in the function invocation.</p>
+
+<p><img src="/images/snippetrun.jpg" alt="_config.yml" /></p>
+
+<p>Take the following simple example:
+The Finbonacci sequence is a series of numbers where any number in the sequence is the sum of the previous two numbers, where the sequence starts at 0 and 1.
+The function nthFibonacci takes a number, n, as an arument and returns the nth number in the Fibonacci sequence.
+Fibonacci sequence: 0, 1, 1, 2, 3, 5, 8, 13, 21, 33…</p>
+
+<p>Rewriting the Fibonacci sequence with a(n obvious) bug and setting a breakpoint at line 5.
+<img src="/images/breakpoint.jpg" alt="_config.yml" /></p>
+
+<p>Setting a breakpoint where the variables are expected to change, for example with every iteration of the for loop, will hone in on where my code could be breaking.</p>
+
+<p><img src="/images/scope.jpg" alt="_config.yml" /></p>
+
+<p>Both within the Scope tab and in the code (where ever is easier for you), you can also watch your variables change. Assigning a breakpoint and pressing the blue play button will allow you to slowly watch the function “play” at every step. Allowing you to find where your expectation of the code is not met. This is useful because pausing inside a multi step function (whether within a for loop or recursive process) allows you to catch the first instance of a miscalculation.</p>
+
+<p>In this Fibonacci sequence example, if n = 5, I expect 5 to be returned. With the code currently written and without the debugger, 16 is returned and I’m left to wonder. But if I watch the growth of the fib array, I can see the sequence numbers are not at all correct! Watching the fib array and the value of i (and of course calculating the i values on line 5), I can see that (oops!) I’ve assigned the nth value of the sequence to be sum of the previous number twice instead of the previous 2 numbers.</p>
+
+<p>Without of course the obvious bug in this simple 7-line algorithm, hopefully you can see the value of the debugger in larger projects. Imagine you have hundreds of lines of code. Give your poor eyeballs a break and let the Debugger find the problem for you.</p>
+
+<p><img src="/images/mrbeaneye.gif" alt="_config.yml" /></p>
+
+</div>
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+var disqus_shortname = 'veeweehermangithubio';
+var disqus_identifier = '/2015/07/30/debugger-snippets-scopes/';
+
+(function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+</body>
+<script type="text/javascript">
+    window.onload = function(){
+        document.getElementsByTagName("BODY")[0].classList.remove("preload");
+    }
+</script>
+</html>

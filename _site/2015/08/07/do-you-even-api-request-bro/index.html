@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ever dream of API requests?</title>
+    <link rel="icon" type="image/ico" href="/images/favicon.ico">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600">
+    <link href="/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Vy" href="/feed.xml" />
+</head>
+
+
+<body class="preload">
+    <div class="top"></div>
+    <div class="profile" style="background-image: url(/images/jellyfish.jpg);">
+        <img src="/images/camel_mongolia_profile_pic.jpg?s=140" class="img-circle" />
+        <h3>Vy</h3>
+        <p>Software Engineer in San Francisco</p>
+        <ul class="social">
+            
+            <a type="button" href="http://github.com/veeweeherman">
+                <i class="fa fa-github"></i>
+            </a>
+             
+            <a type="button" href="http://twitter.com/veeweeherman">
+                <i class="fa fa-twitter"></i>
+            </a>
+             
+            <a type="button" href="http://linkedin.com/in/vyhcu">
+                <i class="fa fa-linkedin"></i>
+            </a>
+              
+        </ul>
+    </div>
+    <div class="posts">
+        <header class="head">
+  <h1 class="head-title">
+    <a href="/">Vy</a>
+  </h1>
+</header>
+
+
+<div class="content post">
+  <h1 class="post-title">Ever dream of API requests?</h1>
+  <div class="post-date">
+    <time>07 Aug 2015</time>
+  </div>
+  <p>“Once I was afraid (of API requests), I was petrified, Kept thinkin’ I could never GET-request with Angular by my side”</p>
+
+<p>(Request heard: I’ll stop butchering that lovely 70s classic)</p>
+
+<p>At Telegraph Academy, where I am currently learning the skills to be a Software Engineer, my classmates and I were assigned our first solo project. The “MVP”, minimal viable product. We had 36 hours to create an app completely from scratch. We could choose what ever we wanted to make with which ever framework(s) we desired.</p>
+
+<p>I decided to make an app where votes (or “likes” to younger generations) can be calculated. My app needed things to vote on so I picked what most people in the world waste countless hours on: cute cats. I was nervous to use a third party’s API to request cat photos because it sounded painfully difficult and time-consuming. But as usual, I just needed to face the facts and get my hands dirty. I found out it wasn’t very difficult at all.</p>
+
+<p>Here’s how I did it.</p>
+
+<p>First let’s define a few words. An endpoint is the point of connection from your code and the API service you are requesting from. A query will mostly be inside that endpoint script. The query will specify what to search for in this API request.</p>
+
+<p><img src="/images/yahoo_endpoint_query.png" alt="_config.yml" />
+<img src="/images/yahoo_data_object_keyval.png" alt="_config.yml" /></p>
+
+<p>Then have a look at the data object that the request will give you. In Javascript, everything is an object, including the data you will get in return from this API request. Find what you’ll need in this data object and put it together.</p>
+
+<p>For example, in my MVP project, I wanted photos, specifically the URLs to the photos. In the response data I was receiving form Flickr, I wasn’t given the url links. But:</p>
+
+<p><img src="/images/yahoo_photo_url.png" alt="_config.yml" /></p>
+
+<p>what I was given were all the key-value pairs on how to make the URL link as a string.</p>
+
+<p>It took a bit of grunt work (haha, get it?) to piece all the info I needed just for 10 cat pics, but in the end it works. MVP right?</p>
+
+<p>In my .controller, I had to do a bit of work to concatenate all the key-values in order to generate the image URLs. Each of these values is nested somewhere in the data object. Then using AngularJS’ ng-repeat, I iterated the array of URL strings to access the images. It took a bit of extra work to make it display the photos randomly.</p>
+
+<p><img src="/images/yahoo_forloop.png" alt="_config.yml" /></p>
+
+<p>In short, it was annoying, scary, and hard. But I survived.</p>
+
+<p><img src="/images/iwillsurvive.gif" alt="_config.yml" /></p>
+
+</div>
+
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+var disqus_shortname = 'veeweehermangithubio';
+var disqus_identifier = '/2015/08/07/do-you-even-api-request-bro/';
+
+(function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+    </div>
+</body>
+<script type="text/javascript">
+    window.onload = function(){
+        document.getElementsByTagName("BODY")[0].classList.remove("preload");
+    }
+</script>
+</html>
